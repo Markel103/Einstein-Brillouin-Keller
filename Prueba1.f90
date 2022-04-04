@@ -4,8 +4,6 @@ use mcf_tipos
 contains
 function f(E)
 
-roeitgeiwsfewdosfs
-foijgpods
 
 end function f
 
