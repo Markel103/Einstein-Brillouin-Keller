@@ -122,6 +122,25 @@ pr=sqrt(2.0_dp*mu*E_V)
 end if
 end function pr
 
+function pr_berminus1(V,E,r)
+use mcf_tipos
+use konstanteak
+real(kind=dp),intent(in)::r,E
+real(kind=dp):: pr_berminus1,em
+interface
+function V(r)
+use mcf_tipos
+real(kind=dp),intent(in)::r
+real(kind=dp)::V
+end function
+end interface
+em=pr(V,E,r)
+if (em==0.0_dp) then
+pr_berminus1=0.0_dp !por si acaso la zehaztasuna nos da un valor negativo en la esquina
+else
+pr_berminus1=1/em
+end if
+end function pr_berminus1
 
 function integral_pr(V,a0,b0,E)
 use mcf_tipos
@@ -175,8 +194,6 @@ end interface
 
 a=V(minimoV(V,a0,b0))
 b=0.0_dp
-!print*,a
-!print*,b
 
 do i=1,imax
 if (abs(b-a)<eps) then
@@ -184,7 +201,6 @@ exit
 endif
 
 EE=(b+a)/2.0_dp
-!print*,EE
 if (((integral_pr(V,a0,b0,a)/pi-(nr+0.5_dp)*hbar_atomiko)*(integral_pr(V,a0,b0,EE)/pi-(nr+0.5_dp)*hbar_atomiko))<0.0_dp) then
 b=EE
 else
@@ -195,6 +211,92 @@ enddo
 
 energia_bilaketa=EE
 end function energia_bilaketa
+
+function integral_pr_berminus1(V,a0,b0,E)
+use mcf_tipos
+use konstanteak
+real(kind=dp),intent(in)::a0,b0,E
+real(kind=dp)::integral_pr_berminus1
+real(kind=dp)::h,hh
+integer::nn,j
+interface
+function V(r)
+use mcf_tipos
+real(kind=dp),intent(in)::r
+real(kind=dp)::V
+end function V
+end interface
+
+h=b0-a0
+nn=10000
+hh=h/nn
+
+
+integral_pr_berminuns1=0.0_dp
+do j=0,(nn-1)
+integral_pr_berminus1=integral_pr_berminus1+(hh/2.0_dp)*((pr_berminus1(V,E,a0+hh*real(j,dp)))+pr_berminus1(V,E,a0+hh*real(j+1,dp)))
+enddo
+
+end function integral_pr_berminus1
+
+
+function prob_r(V,E,a,b,r)
+use mcf_tipos
+use konstanteak
+use funtzioak
+use eragiketak
+use mcf_cuadratura
+real(kind=dp)::prob_r,integr
+real(kind=dp),intent(in)::E,a,b,r
+interface
+function V(r)
+use mcf_tipos
+real(kind=dp),intent(in)::r
+real(kind=dp)::V
+end function V
+end interface
+
+
+integr=integral_pr_berminus1(V,a,b,E)
+
+prob_r=1/(pr(V,E,r)*integr)
+
+
+end function prob_r
+
+function rnitxarondako(V,a0,b0,E,n)
+use mcf_tipos
+use konstanteak
+real(kind=dp),intent(in)::a0,b0,E
+integer,intent(in)::n
+real(kind=dp),dimension(2)::r1r2
+real(kind=dp)::rnitxarondako
+real(kind=dp)::r1,r2,h,hh
+integer::nn,j
+interface
+function V(r)
+use mcf_tipos
+real(kind=dp),intent(in)::r
+real(kind=dp)::V
+end function V
+end interface
+
+r1r2=erroak(V,a0,b0,E)
+r1=r1r2(1)
+r2=r1r2(2)
+
+h=r2-r1
+nn=10000
+hh=h/nn
+
+
+rnitxarondako=0.0_dp
+do j=0,(nn-1)
+r=r1+hh*real(j,dp)
+rnitxarondako=rnitxarondako+(hh/2.0_dp)*((prob_r(V,E,r1,r2,r))*r**n+prob_r(V,E,r1,r2,r+hh)*(r+hh)**n)
+enddo
+
+end function rnitxarondako
 
 
 
