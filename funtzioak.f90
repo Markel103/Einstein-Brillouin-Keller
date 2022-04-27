@@ -1,5 +1,5 @@
 module funtzioak
-public:: U
+public:: U, Vr612
 
 contains
 !function U612(r)
@@ -23,7 +23,7 @@ real(kind=dp),parameter:: r0=7.36_dp ! b=624.0_dp !atomic units
 a=eps*r0**12.0_dp
 b=2.0_dp*eps*r0**6.0_dp
 U612=a/(r**12.0_dp)-b/(r**6.0_dp) ! potentzial 6-12
-Vr612=real(l,dp)*(real(l,dp)+1)*hbar/(2.0_dp*mu*r**2.0_dp) + U612
+Vr612=real(l,dp)*(real(l,dp)+1)*hbar_atomiko/(2.0_dp*mu*r**2.0_dp) + U612
 !print*, r, U612,Vr612
 end function Vr612
 

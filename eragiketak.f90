@@ -1,6 +1,6 @@
 module eragiketak
 use mcf_tipos
-public:: deribatuV,minimoV,erroak,pr,integral_pr,energia_bilaketa
+public:: deribatuV,minimoV,erroak,pr,integral_pr,energia_bilaketa,prob_r,rnitxarondako, integral_pr_berminus1, pr_berminus1
 
 contains
 
@@ -244,8 +244,6 @@ function prob_r(V,E,a,b,r)
 use mcf_tipos
 use konstanteak
 use funtzioak
-use eragiketak
-use mcf_cuadratura
 real(kind=dp)::prob_r,integr
 real(kind=dp),intent(in)::E,a,b,r
 interface
@@ -271,7 +269,7 @@ real(kind=dp),intent(in)::a0,b0,E
 integer,intent(in)::n
 real(kind=dp),dimension(2)::r1r2
 real(kind=dp)::rnitxarondako
-real(kind=dp)::r1,r2,h,hh
+real(kind=dp)::r1,r2,h,hh,r
 integer::nn,j
 interface
 function V(r)
@@ -286,14 +284,16 @@ r1=r1r2(1)
 r2=r1r2(2)
 
 h=r2-r1
-nn=10000
+nn=100000
 hh=h/nn
 
 
 rnitxarondako=0.0_dp
+
 do j=0,(nn-1)
 r=r1+hh*real(j,dp)
 rnitxarondako=rnitxarondako+(hh/2.0_dp)*((prob_r(V,E,r1,r2,r))*r**n+prob_r(V,E,r1,r2,r+hh)*(r+hh)**n)
+!print*,rnitxarondako
 enddo
 
 end function rnitxarondako
