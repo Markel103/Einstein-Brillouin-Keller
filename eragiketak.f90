@@ -19,24 +19,24 @@ end function
 end interface
 h=1.0E-13_dp
 deribatuV=(V(r+h)-V(r-h))/(2.0_dp*h)
-print*,"r=",r,"V=",V(r),V(r+h),V(r-h),deribatuV,"\n"
+!print*,"r=",r,"V=",V(r),V(r+h),V(r-h),deribatuV,"\n"
 end function deribatuV
 
-function idatziV(V,r)
-use mcf_tipos
-use konstanteak
-real(kind=dp),intent(in)::r
-real(kind=dp)::idatziV
-interface
-function V(r)
-use mcf_tipos
-real(kind=dp),intent(in)::r
-real(kind=dp)::V
-end function
-end interface
-idatziV=1.0_dp
-print*,"r idatzi=",r,"V idatzi=",V(r),"\n"
-end function idatziV
+!function idatziV(V,r)
+!use mcf_tipos
+!use konstanteak
+!real(kind=dp),intent(in)::r
+!real(kind=dp)::idatziV
+!interface
+!function V(r)
+!use mcf_tipos
+!real(kind=dp),intent(in)::r
+!real(kind=dp)::V
+!end function
+!end interface
+!idatziV=1.0_dp
+!print*,"r idatzi=",r,"V idatzi=",V(r),"\n"
+!end function idatziV
 
 function minimoV(V,a0,b0)
 use mcf_tipos
@@ -61,7 +61,9 @@ exit
 end if
 erdia=(a2+b2)/2.0_dp
 !print*, erdia,"\n"
-if (deribatuV(V,a2)*deribatuV(V,erdia)<0.0_dp) then
+if (deribatuV(V,erdia)==0.0_dp) then
+exit
+else if (deribatuV(V,a2)*deribatuV(V,erdia)<0.0_dp) then
 b2=erdia
 else
 a2=erdia

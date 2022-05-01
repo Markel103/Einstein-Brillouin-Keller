@@ -1,18 +1,7 @@
 module funtzioak
-public:: U, Vr612
+public:: U, Vr612,Vrg,Vharm
 
 contains
-!function U612(r)
-!use mcf_tipos
-!real(kind=dp),intent(in)::r
-!real(kind=dp)::U612,a,b
-!real(kind=dp),parameter:: eps=0.0019636_dp  !a=4.96E7_dp !atomic units
-!real(kind=dp),parameter:: r0=7.36_dp ! b=624.0_dp !atomic units
-!a=eps*r0**12.0_dp
-!b=2.0_dp*eps*r0**6.0_dp
-!U612=a/(r**12.0_dp)-b/(r**6.0_dp) ! potentzial 6-12
-!end function U612
-
 function Vr612(r)
 use konstanteak
 use mcf_tipos
@@ -38,13 +27,23 @@ real(kind=dp),parameter::msol=1.0_dp !en masas solares
 real(kind=dp),parameter::mlurra=3.0E-6_dp !en masas solares
 real(kind=dp),parameter::G=4.0_dp*pi**2 !unitate sistema astronomikoa
 
-
 vlin=2.0_dp*pi*d/T !orbita zirkularrak suposatu
 Lang=mlurra*vlin*d
 
 Vrg=-G*msol*mlurra/r+Lang**2/(2.0_dp*mlurra*r**2)
-!print*, "el valor de verdad con funtzioak.f90: r=" ,r,"V=", Vrg,"\n"
 
 end function 
+
+function Vharm(r)
+use mcf_tipos
+use konstanteak
+real(kind=dp),intent(in)::r
+real(kind=dp)::Vharm
+real(kind=dp),parameter::k=1.0_dp !no sé qué valor poner
+
+Vharm=0.5_dp*k*r**2
+
+end function Vharm
+
 
 end module funtzioak
