@@ -27,5 +27,15 @@ Vr612=real(l,dp)*(real(l,dp)+1)*hbar_atomiko/(2.0_dp*mu*r**2.0_dp) + U612
 !print*, r, U612,Vr612
 end function Vr612
 
+function Vrg(r)
+use konstanteak
+use mcf_tipos
+real(kind=dp),intent(in)::r
+real(kind=dp)::Vg
+
+Vrg=-G*m1*m2/r+(1000.0_dp*m2*3.8E8_dp)**2/(2*m2*r**2)
+
+
+end function 
 
 end module funtzioak

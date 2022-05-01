@@ -135,7 +135,7 @@ real(kind=dp)::V
 end function
 end interface
 em=pr(V,E,r)
-if (em==0.0_dp) then
+if (em<=1.0E-13_dp) then
 pr_berminus1=0.0_dp !por si acaso la zehaztasuna nos da un valor negativo en la esquina
 else
 pr_berminus1=1/em
@@ -243,9 +243,8 @@ end function integral_pr_berminus1
 function prob_r(V,E,a,b,r)
 use mcf_tipos
 use konstanteak
-use funtzioak
 real(kind=dp)::prob_r,integr
-real(kind=dp),intent(in)::E,a,b,r
+real(kind=dp),intent(in)::a,b,r,E
 interface
 function V(r)
 use mcf_tipos
@@ -254,10 +253,11 @@ real(kind=dp)::V
 end function V
 end interface
 
-
+!E=energia_bilaketa(V,a,b,nr)
+!print*,a,b,nr,E
 integr=integral_pr_berminus1(V,a,b,E)
 
-prob_r=1/(pr(V,E,r)*integr)
+prob_r=pr_berminus1(V,E,r)/integr
 
 
 end function prob_r
@@ -279,20 +279,22 @@ real(kind=dp)::V
 end function V
 end interface
 
+!E=energia_bilaketa(V,a0,b0,nr)
+!print*,E
 r1r2=erroak(V,a0,b0,E)
 r1=r1r2(1)
 r2=r1r2(2)
 
 h=r2-r1
-nn=100000
+nn=10000
 hh=h/nn
 
 
 rnitxarondako=0.0_dp
 
-do j=0,(nn-1)
+do j=1,(nn-2)
 r=r1+hh*real(j,dp)
-rnitxarondako=rnitxarondako+(hh/2.0_dp)*((prob_r(V,E,r1,r2,r))*r**n+prob_r(V,E,r1,r2,r+hh)*(r+hh)**n)
+rnitxarondako=rnitxarondako+(hh/2.0_dp)*((prob_r(V,E,a0,b0,r))*r**n+prob_r(V,E,a0,b0,r+hh)*(r+hh)**n)
 !print*,rnitxarondako
 enddo
 
