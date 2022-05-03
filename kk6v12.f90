@@ -8,9 +8,9 @@ integer::nmax,n
 open(unit=13,file="kk6puntuak1.dat",action="write",status="replace")
 open(unit=14,file="kk6puntuak2.dat",action="write",status="replace")
 
-a=5.0_dp
-b=19.0_dp
-nmax=1000
+a=0.00016_dp
+b=0.005_dp
+nmax=500
 
 l=0
 do n=0,nmax

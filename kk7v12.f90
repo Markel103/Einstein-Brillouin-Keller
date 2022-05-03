@@ -22,13 +22,33 @@ open(unit=24,file="Energiak10l0.dat",action="write",status="replace")
 open(unit=25,file="Energiak11l0.dat",action="write",status="replace")
 open(unit=26,file="Energiak12l0.dat",action="write",status="replace")
 open(unit=27,file="Energiak13l0.dat",action="write",status="replace")
+open(unit=28,file="Energiak14l0.dat",action="write",status="replace")
+open(unit=29,file="Energiak15l0.dat",action="write",status="replace")
+open(unit=30,file="Energiak16l0.dat",action="write",status="replace")
+open(unit=31,file="Energiak17l0.dat",action="write",status="replace")
+open(unit=32,file="Energiak18l0.dat",action="write",status="replace")
+open(unit=33,file="Energiak19l0.dat",action="write",status="replace")
+open(unit=34,file="Energiak20l0.dat",action="write",status="replace")
+open(unit=35,file="Energiak21l0.dat",action="write",status="replace")
+open(unit=36,file="Energiak22l0.dat",action="write",status="replace")
+open(unit=37,file="Energiak23l0.dat",action="write",status="replace")
+open(unit=38,file="Energiak24l0.dat",action="write",status="replace")
+open(unit=39,file="Energiak25l0.dat",action="write",status="replace")
+open(unit=40,file="Energiak26l0.dat",action="write",status="replace")
+open(unit=41,file="Energiak27l0.dat",action="write",status="replace")
+open(unit=42,file="Energiak28l0.dat",action="write",status="replace")
+open(unit=43,file="Energiak29l0.dat",action="write",status="replace")
+open(unit=44,file="Energiak30l0.dat",action="write",status="replace")
+open(unit=45,file="Energiak31l0.dat",action="write",status="replace")
+open(unit=46,file="Energiak32l0.dat",action="write",status="replace")
+open(unit=47,file="Energiak33l0.dat",action="write",status="replace")
 
 
 imax=5000
 a0=0.00016_dp
 b0=0.005_dp
 
-do nnr=0,13
+do nnr=0,33
 E=energia_bilaketa(Vr12,a0,b0,nnr)
 r1r2=erroak(Vr12,a0,b0,E)
 r1=r1r2(1)
@@ -59,7 +79,26 @@ close(unit=24)
 close(unit=25)
 close(unit=26)
 close(unit=27)
-
+close(unit=28)
+close(unit=29)
+close(unit=30)
+close(unit=31)
+close(unit=32)
+close(unit=33)
+close(unit=34)
+close(unit=35)
+close(unit=36)
+close(unit=37)
+close(unit=38)
+close(unit=39)
+close(unit=40)
+close(unit=41)
+close(unit=42)
+close(unit=43)
+close(unit=44)
+close(unit=45)
+close(unit=46)
+close(unit=47)
 
 
 
