@@ -160,7 +160,7 @@ em=pr(V,E,r)
 if (em<=1.0E-13_dp) then
 pr_berminus1=0.0_dp !por si acaso la zehaztasuna nos da un valor negativo en la esquina
 else
-pr_berminus1=1/em
+pr_berminus1=1.0_dp/em
 end if
 end function pr_berminus1
 
@@ -214,7 +214,7 @@ real(kind=dp)::V
 end function V
 end interface
 
-a=V(minimoV(V,a0,b0))
+a=V(minimoV(V,a0,b0)) !IMPORTANTE: esto solo vale para potenciales donde el mínimo esté debajo de 0
 b=0.0_dp
 
 do i=1,imax
@@ -308,13 +308,13 @@ r1=r1r2(1)
 r2=r1r2(2)
 
 h=r2-r1
-nn=10000
+nn=100
 hh=h/nn
 
 
 rnitxarondako=0.0_dp
 
-do j=1,(nn-2)
+do j=1,(nn-2) ! que no coja lo de las esquinas porque se pira a infinito
 r=r1+hh*real(j,dp)
 rnitxarondako=rnitxarondako+(hh/2.0_dp)*((prob_r(V,E,a0,b0,r))*r**n+prob_r(V,E,a0,b0,r+hh)*(r+hh)**n)
 !print*,rnitxarondako
@@ -322,6 +322,98 @@ enddo
 
 end function rnitxarondako
 
+function energia_bilaketa2(V,a0,b0,nr)
+use mcf_tipos
+use konstanteak
+real(kind=dp),intent(in)::a0,b0
+real(kind=dp),dimension(2)::r1r2
+real(kind=dp)::emaitza,EE,a,b,energia_bilaketa2
+real(kind=dp),parameter::eps=1.0E-13_dp
+integer::i
+integer,intent(in)::nr
+integer,parameter::imax=1000
+interface
+function V(r)
+use mcf_tipos
+real(kind=dp),intent(in)::r
+real(kind=dp)::V
+end function V
+end interface
+
+a=0.0_dp ! V(minimoV(V,a0,b0))
+b=1000000.0_dp !PARA MAYORES QUE 0 EL MÍNIMO
+
+do i=1,imax
+if (abs(b-a)<eps) then
+exit
+endif
+
+EE=(b+a)/2.0_dp
+if (((integral_pr(V,a0,b0,a)/pi-(nr+0.5_dp)*hbar_atomiko)*(integral_pr(V,a0,b0,EE)/pi-(nr+0.5_dp)*hbar_atomiko))<0.0_dp) then
+b=EE
+else
+a=EE
+endif
+
+enddo
+
+energia_bilaketa2=EE
+end function energia_bilaketa2
+
+
+!function pr2(V,E,r)
+!use mcf_tipos
+!use konstanteak
+!real(kind=dp),intent(in)::r,E
+!real(kind=dp):: pr2,E_V,m1,m2
+!interface
+!function V(r)
+!use mcf_tipos
+!real(kind=dp),intent(in)::r
+!real(kind=dp)::V
+!end function
+!end interface
+!m1=1.0_dp
+!m2=1.0_dp
+!E_V=E-V(r)
+!if (E_V<0.0_dp) then
+!pr2=0.0_dp !por si acaso la zehaztasuna nos da un valor negativo en la esquina
+!else
+!pr2=sqrt(2.0_dp*m1*m2/(m1+m2)*E_V)
+!end if
+!end function pr2
+
+!function integral_pr2(V,a0,b0,E)
+!use mcf_tipos
+!use konstanteak
+!real(kind=dp),intent(in)::a0,b0,E
+!real(kind=dp),dimension(2)::r1r2
+!real(kind=dp)::integral_pr2
+!real(kind=dp)::r1,r2,h,hh
+!integer::nn,j
+!interface
+!function V(r)
+!use mcf_tipos
+!real(kind=dp),intent(in)::r
+!real(kind=dp)::V
+!end function V
+!end interface
+
+!r1r2=erroak(V,a0,b0,E)
+!r1=r1r2(1)
+!r2=r1r2(2)
+
+!h=r2-r1
+!nn=10000
+!hh=h/nn
+
+
+!integral_pr2=0.0_dp
+!do j=0,(nn-1)
+!integral_pr2=integral_pr2+(hh/2.0_dp)*((pr2(V,E,r1+hh*real(j,dp)))+pr2(V,E,r1+hh*real(j+1,dp)))
+!enddo
+
+!end function integral_pr2
 
 
 end module eragiketak

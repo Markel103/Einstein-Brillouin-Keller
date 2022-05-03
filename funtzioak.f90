@@ -23,14 +23,15 @@ real(kind=dp),intent(in)::r
 real(kind=dp)::Vrg,Lang,vlin
 real(kind=dp),parameter::T=1.0_dp !urtetan
 real(kind=dp),parameter::d=1.0_dp !unitate astronomikotan
-real(kind=dp),parameter::msol=1.0_dp !en masas solares
-real(kind=dp),parameter::mlurra=3.0E-6_dp !en masas solares
-real(kind=dp),parameter::G=4.0_dp*pi**2 !unitate sistema astronomikoa
+!real(kind=dp),parameter::msol=1.0_dp !en masas solares
+!real(kind=dp),parameter::mlurra=3.0E-6_dp !en masas solares
+!real(kind=dp),parameter::G=4.0_dp*pi**2 !unitate sistema astronomikoa
 
 vlin=2.0_dp*pi*d/T !orbita zirkularrak suposatu
-Lang=mlurra*vlin*d
+Lang=m2*vlin*d
 
-Vrg=-G*msol*mlurra/r+Lang**2/(2.0_dp*mlurra*r**2)
+!Vrg=-G*msol*mlurra/r+Lang**2/(2.0_dp*mlurra*r**2)
+Vrg=-G_astro*m1*m2/r+Lang**2/(2.0_dp*mu*r**2)
 
 end function 
 
