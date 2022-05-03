@@ -1,4 +1,4 @@
-program kk7h
+program kk7
 use mcf_tipos
 use konstanteak
 use funtzioak
@@ -24,24 +24,24 @@ open(unit=26,file="Energiak12l0.dat",action="write",status="replace")
 open(unit=27,file="Energiak13l0.dat",action="write",status="replace")
 
 
-imax=500
-a0=-0.5_dp
-b0=0.5_dp
+imax=5000
+a0=0.00016_dp
+b0=0.005_dp
 
 do nnr=0,13
-E=energia_bilaketa2(Vharm,a0,b0,nnr)
-r1r2=erroak(Vharm,a0,b0,E)
+E=energia_bilaketa(Vr12,a0,b0,nnr)
+r1r2=erroak(Vr12,a0,b0,E)
 r1=r1r2(1)
 r2=r1r2(2)
 unitatea=14+nnr
-print*, nnr, E, r1, r2
+
 write(unit=unitatea,fmt=*)r1,E
 write(unit=unitatea,fmt=*)r2,E
 enddo
 
 do i=0,imax
 r=a0+i*(b0-a0)/imax
-write(unit=13,fmt=*)r,Vharm(r)
+write(unit=13,fmt=*)r,Vr12(r)
 enddo
 
 close(unit=13)
@@ -70,5 +70,5 @@ close(unit=27)
 
 
 
-end program kk7h
+end program kk7
  
