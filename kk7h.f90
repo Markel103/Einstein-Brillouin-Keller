@@ -24,9 +24,9 @@ open(unit=26,file="Energiak12l0.dat",action="write",status="replace")
 open(unit=27,file="Energiak13l0.dat",action="write",status="replace")
 
 
-imax=500
-a0=-0.5_dp
-b0=0.5_dp
+imax=1000
+a0=-14.0_dp
+b0=14.0_dp
 
 do nnr=0,13
 E=energia_bilaketa2(Vharm,a0,b0,nnr)

@@ -55,7 +55,7 @@ use mcf_tipos
 use konstanteak
 real(kind=dp),intent(in)::r
 real(kind=dp)::Vharm
-real(kind=dp),parameter::k=1.0_dp !no sé qué valor poner
+real(kind=dp),parameter::k=0.5_dp !no sé qué valor poner
 
 Vharm=0.5_dp*k*r**2
 
