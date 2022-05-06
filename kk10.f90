@@ -1,4 +1,5 @@
 program kk10
+!Hainbat potentzialen orbitak simulatzeko 4. ordenako Runge-Kutta erabilita
 use mcf_tipos
 use konstanteak
 use funtzioak
@@ -6,23 +7,29 @@ use eragiketak
 use rk4
 use kk10mod
 real(kind=dp),dimension(4)::y
-real(kind=dp)::t,xx,yy,h
+real(kind=dp),dimension(2)::r1r2
+real(kind=dp)::t,xx,yy,h,E
 integer::imax
 open(unit=13,file="orbitapuntuak.dat",action="write",status="replace")
-h=0.0001_dp
+h=50.0_dp
 
 !print*,pr(Vrg,-100.0_dp,1.0_dp)
-imax=1007900
+imax=2300000
 !y1 r
 !y2 rpunto
 !y3 phi
 !y4 phipunto
+l=15
+E=energia_bilaketa(Vr612,0.00000001_dp,20.0_dp,12)
+r1r2=erroak(Vr612,0.00000001_dp,20.0_dp,E)
 
-y(1)=2.0_dp
-y(2)=0.0_dp
+
+y(1)=r1r2(2)
+y(2)=pr(Vr612,E,y(1))/mu
 y(3)=0.0_dp
-y(4)=2.0_dp*pi/y(1)**2+0.5_dp    !momentu angeluarra/(mu*r**2)
+y(4)=sqrt(real(l*(l+1),dp))*hbar_atomiko/(mu*y(1)**2) !2.0_dp*pi/y(1)**2+0.5_dp    !momentu angeluarra/(mu*r**2)
 
+!print*,y
 !print*,y
 do i=1,imax
 !print*,"y=",y

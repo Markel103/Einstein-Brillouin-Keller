@@ -13,12 +13,12 @@ real(kind=dp),intent(in),dimension(:)::y
 real(kind=dp),intent(in)::t
 real(kind=dp),dimension(4)::F1
 real(kind=dp)::hh
-hh=0.000001_dp
+hh=0.0001_dp
 
 F1(1)=y(2)
-F1(2)=(-0.5_dp/hh)*(Vrg(y(1)+hh)-Vrg(y(1)-hh))/mu !edo erabili deribatuV
+F1(2)=(-0.5_dp/hh)*(Vr612(y(1)+hh)-Vr612(y(1)-hh))/mu !edo erabili deribatuV
 F1(3)=y(4)
-F1(4)=(mu*2.0_dp*pi)/mu*(-2/y(1)**3)*y(2) !momentu angeluarraren menpe 
+F1(4)=sqrt(real(l*(l+1),dp))*hbar_atomiko/mu*(-2.0_dp/y(1)**3)*y(2)      !(mu*2.0_dp*pi)/mu*(-2/y(1)**3)*y(2) !momentu angeluarraren menpe 
 
 !print*,F1
 

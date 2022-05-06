@@ -1,4 +1,5 @@
 program kk8
+!Vr6-12 potentziala eta energia mailak irudikatzeko l desberdinetarako 
 use mcf_tipos
 use konstanteak
 use funtzioak

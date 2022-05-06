@@ -1,4 +1,5 @@
 program kk5
+!Vr6-12-rekin itxarondako balioak lortzeko
 use mcf_tipos
 use konstanteak
 use funtzioak

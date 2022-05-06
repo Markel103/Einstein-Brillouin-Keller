@@ -1,4 +1,5 @@
 program kk6
+!Vr1-2 potentzial eraginkorra irudikatzeko
 use mcf_tipos
 use konstanteak
 use funtzioak

@@ -1,20 +1,14 @@
-program kk3
+program kk3h
+! Potentzial harmonikoarekin energia bilaketa egiteko nr ezberdinetarako
 use mcf_tipos
 use konstanteak
 use eragiketak
 use funtzioak
 real(kind=dp)::em,integr,conp
 integer::n
-!l=26
-!integr=integral_pr(Vr612,0.00000001_dp,20.0_dp,-0.001479_dp)
-!open(unit=13,file="energiak.dat",action="write",status="replace")
-!print*,integr
 do n=0,13
 em=energia_bilaketa2(Vharm,-9.0_dp,9.1_dp,n)
-!write(unit=*,fmt="(f3.14)")em
-print*, em
+write(unit=*,fmt=*)em
 enddo
-!conp=integral_pr(Vr612,0.00000001_dp,20.0_dp,em)
-!print*,conp/pi
 
-end program kk3
+end program kk3h

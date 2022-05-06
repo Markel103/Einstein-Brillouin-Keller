@@ -1,4 +1,5 @@
 program kk6
+!Vr6-12 irudikatzeko l=0 eta l=26 kasuetan
 use mcf_tipos
 use konstanteak
 use funtzioak

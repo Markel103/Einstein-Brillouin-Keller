@@ -1,4 +1,5 @@
 program kk4
+!Vr6-12-rekin partikulen separazioaren probabilitate dentsitate normalizatuak irudikatzeko
 use mcf_tipos
 use konstanteak
 use funtzioak

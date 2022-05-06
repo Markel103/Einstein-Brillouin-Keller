@@ -1,4 +1,5 @@
 program kk6g
+!Vrg potentzial eraginkorra irudikatu
 use mcf_tipos
 use konstanteak
 use funtzioak

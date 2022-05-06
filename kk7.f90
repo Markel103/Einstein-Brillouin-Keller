@@ -1,4 +1,5 @@
 program kk7
+!Vr6-12 pontentziala eta energia mailak irudikateko
 use mcf_tipos
 use konstanteak
 use funtzioak

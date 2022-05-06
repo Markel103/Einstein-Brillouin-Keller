@@ -1,4 +1,5 @@
 program kk2
+!eragiketak egoki funtzionatzen dutela konprobatzeko
 use mcf_tipos
 use konstanteak
 use funtzioak

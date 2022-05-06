@@ -1,4 +1,5 @@
 program kk9
+!Debugging
 use mcf_tipos
 use konstanteak
 use funtzioak

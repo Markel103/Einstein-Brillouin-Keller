@@ -1,4 +1,5 @@
 program kk7h
+!Potentzial harmonikoa eta energia mailak irudikatzeko
 use mcf_tipos
 use konstanteak
 use funtzioak
