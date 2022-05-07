@@ -250,13 +250,16 @@ end function V
 end interface
 
 h=b0-a0
-nn=10000
+nn=1000000
 hh=h/nn
 
 
 integral_pr_berminuns1=0.0_dp
+!do j=0,(nn-1)
+!integral_pr_berminus1=integral_pr_berminus1+(hh/2.0_dp)*((pr_berminus1(V,E,a0+hh*real(j,dp)))+pr_berminus1(V,E,a0+hh*real(j+1,dp)))
+!enddo
 do j=0,(nn-1)
-integral_pr_berminus1=integral_pr_berminus1+(hh/2.0_dp)*((pr_berminus1(V,E,a0+hh*real(j,dp)))+pr_berminus1(V,E,a0+hh*real(j+1,dp)))
+integral_pr_berminus1=integral_pr_berminus1+hh*pr_berminus1(V,E,a0+hh*real(j,dp)+hh*0.5_dp)
 enddo
 
 end function integral_pr_berminus1
@@ -308,19 +311,62 @@ r1=r1r2(1)
 r2=r1r2(2)
 
 h=r2-r1
-nn=100
+nn=10000
 hh=h/nn
 
 
 rnitxarondako=0.0_dp
 
-do j=1,(nn-2) ! que no coja lo de las esquinas porque se pira a infinito
-r=r1+hh*real(j,dp)
-rnitxarondako=rnitxarondako+(hh/2.0_dp)*((prob_r(V,E,a0,b0,r))*r**n+prob_r(V,E,a0,b0,r+hh)*(r+hh)**n)
+!do j=1,(nn-2) ! alboetako puntuak ez hartu infinitura baitoaz
+!r=r1+hh*real(j,dp)
+!rnitxarondako=rnitxarondako+(hh/2.0_dp)*((prob_r(V,E,a0,b0,r))*r**n+prob_r(V,E,a0,b0,r+hh)*(r+hh)**n)
 !print*,rnitxarondako
-enddo
+!enddo
 
+do j=0,(nn-1)
+r=r1+hh*real(j,dp)+0.5_dp*hh
+rnitxarondako=rnitxarondako+hh*(prob_r(V,E,a0,b0,r))*r**n
+
+enddo
 end function rnitxarondako
+
+
+function rnitxarondako_azkarra(V,a0,b0,E,n)
+use mcf_tipos
+use konstanteak
+real(kind=dp),intent(in)::a0,b0,E
+integer,intent(in)::n
+real(kind=dp),dimension(2)::r1r2
+real(kind=dp)::rnitxarondako_azkarra
+real(kind=dp)::r1,r2,h,hh,r
+integer::nn,j
+interface
+function V(r)
+use mcf_tipos
+real(kind=dp),intent(in)::r
+real(kind=dp)::V
+end function V
+end interface
+
+r1r2=erroak(V,a0,b0,E)
+r1=r1r2(1)
+r2=r1r2(2)
+
+h=r2-r1
+nn=1000000
+hh=h/nn
+
+
+rnitxarondako_azkarra=0.0_dp
+
+do j=0,(nn-1)
+r=r1+hh*real(j,dp)+0.5_dp*hh
+rnitxarondako_azkarra=rnitxarondako_azkarra+hh*(pr_berminus1(V,E,r))*r**n
+enddo
+rnitxarondako_azkarra=rnitxarondako_azkarra/integral_pr_berminus1(V,a0,b0,E)
+
+end function rnitxarondako_azkarra
+
 
 function energia_bilaketa2(V,a0,b0,nr)
 use mcf_tipos

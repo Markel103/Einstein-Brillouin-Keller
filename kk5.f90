@@ -25,7 +25,7 @@ do n=-1,2
 if (n==0) then
 cycle
 end if
-em=rnitxarondako(Vr612,a,b,E,n)
+em=rnitxarondako_azkarra(Vr612,a,b,E,n)
 print*,nr,n,em
 enddo
 
