@@ -23,7 +23,10 @@ Numerical implementation of Einstein-Brillouin-Keller quantization for arbitrary
   * *pr* &rarr; momentu erradiala kalkulatzen du. Argumentuak potentziala, energia eta r dira.
   * *pr_berminus1* &rarr; momentu erradialaren alderantzizkoa kalkulatzen du. Argumentuak potentziala, energia eta r dira.
   * *integral_pr* &rarr; momentu erradiala periapsi eta apoapsiaren artean integratzen du. Argumentuak potentziala, tartearen hasiera eta emaierako puntuak eta energia dira.
-  * *energia_bilaketa* &rarr; 
+  * *integral_pr_berminus1* &rarr; momentu erradialaren alderantzizkoa periapsi eta apoapsiaren artean integratzen du. Argumentuak potentziala, tartearen hasiera eta emaierako puntuak eta energia dira.
+  * *energia_bilaketa* &rarr; n<sub>r</sub> energia maila emanda dagokion energia kalkulatzen du. Soilik da baliagarria energia potentzialaren minimotik (negatiboa dena) 0-ra badago. Argumentuak potentziala, tartearen hasiera eta emaierako puntuak eta energia maila (nr) dira.
+  * *energia_bilaketa2* &rarr; aurrekoaren berdina baina energia 0-tik goragoko tartean (potentzial harmonikoarentzat).
+  * *rnitxarondako_azkarra* &rarr; r<sup>n</sup>-ren itxarondako balioa kalkulatzen du. Argumentuak potentziala, tartearen hasierako eta amaierako puntuak, energia eta n berretzailea dira.
 
 
 
