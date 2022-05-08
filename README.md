@@ -20,7 +20,7 @@ Fitxategien izenak ez dira ulertzeko intuitiboenak, hasieran frogak egiteko erab
 
 * **eragiketak.f90** &rarr; egin beharreko kalkulu guztiak egiten dituzten funtzioak ditu:
   * *deribatuV* &rarr; funtzio baten deribatua kalkulatzen du. Argumentuak funtzioa (potentziala) eta aldagaia (r) dira.
-  * *minimoV* &rarr; funtzio baten minimoa kalkulatzen du. Argumentuak funtzioa (potentziala), eta zein tartetan bilatu nahi den minimoa (a0, b0) dira.
+  * *minimoV* &rarr; funtzio baten minimoaren posizioa lortzen du. Argumentuak funtzioa (potentziala), eta zein tartetan bilatu nahi den minimoa (a0, b0) dira.
   * *erroak* &rarr; potentzialaren periapsi eta apoapsia aurkitzeko erroen bilaketa egiten du. Argumentuak potentziala, tartearen hasierako puntua, tartearen amaierako puntua eta energia dira. Apoapsia eta periapsia 2 dimentsioko bektore batean itzultzen ditu.
   * *pr* &rarr; momentu erradiala kalkulatzen du. Argumentuak potentziala, energia eta r dira.
   * *pr_berminus1* &rarr; momentu erradialaren alderantzizkoa kalkulatzen du. Argumentuak potentziala, energia eta r dira.
