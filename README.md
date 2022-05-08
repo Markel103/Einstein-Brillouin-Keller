@@ -1,6 +1,8 @@
 # Einstein-Brillouin-Keller
 Numerical implementation of Einstein-Brillouin-Keller quantization for arbitrary potentials
 
+Fitxategien izenak ez dira ulertzeko intuitiboenak, hasieran frogak egiteko erabili ditugulako, eta bertsio ezberdinak gordetzeko izenak mantendu behar izan ditugulako. Horregatik, hona hemen bakoitzaren azalpena:
+
 ### Moduluak:
 * **konstanteak.f90** &rarr; nahi ditugun konstante edo aldagaiak definitzeko era publikoan eta ondoren edozein modulu eta programatan erabili ahal izateko. Hauek dira:
   * *pi* &rarr; &pi; zenbakia
