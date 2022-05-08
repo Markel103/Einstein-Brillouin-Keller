@@ -28,5 +28,26 @@ Numerical implementation of Einstein-Brillouin-Keller quantization for arbitrary
   * *energia_bilaketa2* &rarr; aurrekoaren berdina baina energia 0-tik goragoko tartean (potentzial harmonikoarentzat).
   * *rnitxarondako_azkarra* &rarr; r<sup>n</sup>-ren itxarondako balioa kalkulatzen du. Argumentuak potentziala, tartearen hasierako eta amaierako puntuak, energia eta n berretzailea dira.
 
+Agertzen diren gainerako funtzioak besteen bertsio zaharragoak edota frogak egiteko funtzioak dira.
 
+### Programak:
+* **kk3.f90** &rarr; 6-12 potentzialarekin energia bilaketa egiteko hainbat energia mailetan, do egitura batekin.
+* **kk3h.f90** &rarr; aurrekoaren berdina potentzial harmonikoarekin
+* **kk4.f90** &rarr; probabilitate dentsitateak irudikatzeko 6-12 potentzialarekin
+* **kk4g.f90** &rarr; aurrekoaren berdina potentzial grabitatorioarekin
+* **kk5.f90** &rarr; 6-12 potentzialarekin r<sup>n</sup>-ren itxarondako balioa kalkulatzeko
+* **kk6.f90** &rarr; l=0 eta l=26 kasuetan potentzial eraginkorrak irudikatzeko (6-12 potentzialarekin)
+* **kk6v12.f90** &rarr; aurrekoaren berdina 1-2 potentzialarekin
+* **kk7.f90** &rarr; potentzial eraginkorra eta n<sub>r</sub> energia maila ezberdinen energiak irudikatzeko 6-12 potentzialean
+* **kk7h.f90** &rarr; aurrekoaren berdina potentzial harmonikoarentzat
+* **kk7v12.f90** &rarr; aurrekoaren berdina 1-2 potentzialarentzat
+* **kk8.f90** &rarr; 6-12 potentzialarekin l eta nr-ren balio ezberdinetarako potentzial eraginkorrak eta energia mailak irudikatzeko
+* **kk10.f90** &rarr; orbitak kalkulatzeko (potentziala bertan aldatu). rk4 modulua erabiltzen du, eta **kk10mod.f90** moduluan beharrezko funtzioa definitu da horretarako.
 
+Gainerako .f90 programak frogak egiteko erabili ditugunak dira.
+
+### Emaitzak:
+.png fitxategiak programa ezberdinekin egindako irudiak dira
+
+### Artikuluak:
+.pdf fitxategiak erabilitako bibliografiako artikuluak dira
